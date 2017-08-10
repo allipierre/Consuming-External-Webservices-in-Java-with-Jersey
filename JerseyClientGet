@@ -1,0 +1,44 @@
+public class JerseyClientGet {
+
+  public static void main(String[] args) {
+	try {
+
+		Client client = Client.create();
+
+		WebResource webResource = client
+		   .resource("https://apex.oracle.com/pls/apex/pierrealli/hr/employees/");
+
+		ClientResponse response = webResource.accept("application/json")
+                   .get(ClientResponse.class);
+
+		if (response.getStatus() != 200) {
+		   throw new RuntimeException("Failed : HTTP error code : "
+			+ response.getStatus());
+		}
+
+		String output = response.getEntity(String.class);
+		// continue here
+		Gson gson = new Gson();
+		Employee.EmployeeResponse empResponse = gson.fromJson(output,Employee.EmployeeResponse.class);
+		
+		ArrayList<Employee> employees = empResponse.getItems(); // remember to create a setter for items
+		// then do whatever with the employees list
+    
+    
+    System.out.println("Output from Server .... \n");
+			for (int i = 0; i < employees.size(); i++) {
+				System.out.println(employees.get(i).getEname()+ " \n"
+						+ employees.get(i).getEmpno());
+			}
+
+		System.out.println("Output from Server .... \n");
+		System.out.println(output);
+
+	  } catch (Exception e) {
+
+		e.printStackTrace();
+
+	  }
+
+	}
+}
