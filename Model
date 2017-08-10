@@ -1,0 +1,20 @@
+class Employee {
+	long rn;
+	long empno;
+	String ename;
+	String job;
+	Date hiredate;
+	long mgr;
+	int sal;
+	long comm;
+	long deptno;
+	
+	// your constructors and getters/setters down here
+	
+	public class EmployeeResponse {
+		ArrayList<Employee> items;
+		Map<String, String> next;
+	}
+}
+
+//Don't forget to put setter and getter Methode
