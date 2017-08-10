@@ -1,0 +1,13 @@
+Lageruebersicht employeea = new Lageruebersicht();
+			employeea.setCode("19");
+			employeea.setName("Müllere");
+			employeea.setAddress("Duala");
+			employeea.setAddress("Cameroun");
+			
+			// other setters
+
+			// convert to json
+			Gson gson1 = new Gson();
+			String jsonData = gson1.toJson(employeea);
+			ClientResponse response1 = webResource.accept("application/json")
+			                .type("application/json").post(ClientResponse.class, jsonData);
